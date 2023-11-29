@@ -18,10 +18,10 @@ main{
 }
 
 h1{
-    font-size: 4em;
+    font-size: 2.5em;
 }
 
-span{
+#passGen{
     font-size: 1.5em;
 }
 
