@@ -1,6 +1,30 @@
+const lengthEl = document.getElementById("length");
+const caps = document.getElementById("capsCheck");
+const nums = document.getElementById("numCheck");
+const symbols = document.getElementById("charCheck")
 const copyButton = document.getElementById("btnCopy")
-const copyBtn = document.getElementById("btnCopy")
 const copyText = document.getElementById("passGen")
+const generateBtn = document.getElementById("generateBtn")
+const functions = {
+    upper: getRandomUpper,
+    number: getRandomNumber,
+    symbol: getRandomSymbol
+}
+
+generateBtn.addEventListener("click", () => {
+    const length = + lengthEl.value
+    const hasUpper = caps.checked
+    const hasNumber = nums.checked
+    const hasSymbol = symbols.checked
+
+    copyButton.innerHTML = passwordGenerator(hasNumber, hasUpper, hasSymbol)
+})
+
+
+const passwordGenerator = () => {
+    
+}
+
 
 const generatePassword = () => {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcedfghijklmnopqrstuvwxyz123456789$#.-_"
@@ -16,14 +40,13 @@ const generatePassword = () => {
     copyBtn.innerText = "Copy"
 }
 
-const copyPass = () => {
-    const clipboard = navigator.clipboard;
-    clipboard.writeText(copyText.innerText)
-        .then(
-            copyBtn.innerText = "Copied!",
-            copyBtn.className = "btn btn-outline-light btn-lg mt-2"
-        )
-        .catch(function(error){
-            console.error("no se copió", error)
-        })
-}
+
+copyButton.addEventListener("click", () => {
+    if (!password) {
+        return;
+    }else{
+        navigator.clipboard.writeText(password);
+        copyBtn.innerText = "Copied!",
+        copyBtn.className = "btn btn-outline-light btn-lg mt-2"
+    }
+})
