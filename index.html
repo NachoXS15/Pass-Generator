@@ -55,6 +55,11 @@
                 ><input type="number" id="length" min="4" max="20" value="12" />
             </div>
             <div>
+                <input type="checkbox" id="lowerCheck" /><span
+                    >Must have lower</span
+                >
+            </div>
+            <div>
                 <input type="checkbox" id="capsCheck" /><span
                     >Must have caps</span
                 >
@@ -69,7 +74,7 @@
                     >Must have special characters</span
                 >
             </div>
-            <button class="btn btn-success btn-lg mb-4 mt-4" id="generateBtn">
+            <button class="btn btn-success btn-lg mb-4 mt-4" id="generateBtn" onclick="getRandomSymbol()">
                 Generate
             </button>
         </main>

@@ -1,28 +1,49 @@
 const lengthEl = document.getElementById("length");
+const lower = document.getElementById("lowerCheck")
 const caps = document.getElementById("capsCheck");
 const nums = document.getElementById("numCheck");
 const symbols = document.getElementById("charCheck")
 const copyButton = document.getElementById("btnCopy")
 const copyText = document.getElementById("passGen")
 const generateBtn = document.getElementById("generateBtn")
+
 const functions = {
+    lower: getRandomLower,
     upper: getRandomUpper,
     number: getRandomNumber,
     symbol: getRandomSymbol
 }
 
 generateBtn.addEventListener("click", () => {
-    const length = + lengthEl.value
+    const length =+ lengthEl.value
+    const hasLower = lower.checked
     const hasUpper = caps.checked
     const hasNumber = nums.checked
     const hasSymbol = symbols.checked
 
-    copyButton.innerHTML = passwordGenerator(hasNumber, hasUpper, hasSymbol)
+    copyButton.innerHTML = passwordGenerator(hasLower, hasNumber, hasUpper, hasSymbol)
 })
 
 
 const passwordGenerator = () => {
-    
+    let password = "";
+}
+
+function getRandomLower(){
+    console.log(String.fromCharCode(Math.floor(Math.random() * 26) + 97))
+}
+
+function getRandomUpper(){
+    console.log(String.fromCharCode(Math.floor(Math.random() * 26 + 65)))
+}
+
+function getRandomNumber(){
+    console.log(String.fromCharCode(Math.floor(Math.random() * 26 + 65)))
+}
+
+function getRandomSymbol() {
+    const symbols = '!@#$%^&*(){}[]=<>/,.'
+    console.log(symbols[Math.floor(Math.random() * symbols.length)])
 }
 
 const historyCanva = () => {
@@ -42,23 +63,6 @@ const historyCanva = () => {
     }
 }
 
-
-
-const generatePassword = () => {
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcedfghijklmnopqrstuvwxyz123456789$#.-_"
-    const length = 12;
-    let password = "";
-    for (let i = 0; i < length; i++) {
-        let index = Math.floor(Math.random() * characters.length);
-        password += characters.charAt(index);
-    }
-    document.getElementById("passGen").innerText = password;
-    copyButton.style.display = "block"
-    document.getElementById("generateBtn").innerText = "Generate Again"
-    copyBtn.innerText = "Copy"
-}
-
-
 copyButton.addEventListener("click", () => {
     if (!password) {
         return;
@@ -68,3 +72,19 @@ copyButton.addEventListener("click", () => {
         copyBtn.className = "btn btn-outline-light btn-lg mt-2"
     }
 })
+
+
+// const generatePassword = () => {
+//     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcedfghijklmnopqrstuvwxyz123456789$#.-_"
+//     const length = 12;
+//     let password = "";
+//     for (let i = 0; i < length; i++) {
+//         let index = Math.floor(Math.random() * characters.length);
+//         password += characters.charAt(index);
+//     }
+//     document.getElementById("passGen").innerText = password;
+//     copyButton.style.display = "block"
+//     document.getElementById("generateBtn").innerText = "Generate Again"
+//     copyBtn.innerText = "Copy"
+// }
+
