@@ -1,77 +1,98 @@
 const lengthEl = document.getElementById("length");
-const lower = document.getElementById("lowerCheck")
-const caps = document.getElementById("capsCheck");
-const nums = document.getElementById("numCheck");
-const symbols = document.getElementById("charCheck")
+const lowerEl = document.getElementById("lowerCheck");
+const upperEl = document.getElementById("capsCheck");
+const numsEl = document.getElementById("numCheck");
+const symbolsEl = document.getElementById("charCheck")
 const copyButton = document.getElementById("btnCopy")
 const copyText = document.getElementById("passGen")
 const generateBtn = document.getElementById("generateBtn")
 
+
 const functions = {
     lower: getRandomLower,
     upper: getRandomUpper,
-    number: getRandomNumber,
-    symbol: getRandomSymbol
-}
-
-generateBtn.addEventListener("click", () => {
-    const length =+ lengthEl.value
-    const hasLower = lower.checked
-    const hasUpper = caps.checked
-    const hasNumber = nums.checked
-    const hasSymbol = symbols.checked
-
-    copyButton.innerHTML = passwordGenerator(hasLower, hasNumber, hasUpper, hasSymbol)
-})
-
-
-const passwordGenerator = () => {
-    let password = "";
+    nums: getRandomNumber,
+    symbols: getRandomSymbol
 }
 
 function getRandomLower(){
-    console.log(String.fromCharCode(Math.floor(Math.random() * 26) + 97))
+    const lowers = "abcdefghijklmnopqrstuvwxyz"
+    return lowers[Math.floor(Math.random() * lowers.length)]
 }
 
 function getRandomUpper(){
-    console.log(String.fromCharCode(Math.floor(Math.random() * 26 + 65)))
+    const caps = "ABCDEFGHIJKLMNOPQRSTUVWYXZ"
+    return caps[Math.floor(Math.random() * caps.length)]
 }
 
 function getRandomNumber(){
-    console.log(String.fromCharCode(Math.floor(Math.random() * 26 + 65)))
+    const numbers = "0123456789"
+    return numbers[Math.floor(Math.random() * numbers.length)]
 }
 
 function getRandomSymbol() {
     const symbols = '!@#$%^&*(){}[]=<>/,.'
-    console.log(symbols[Math.floor(Math.random() * symbols.length)])
+    return symbols[Math.floor(Math.random() * symbols.length)]
 }
 
-const historyCanva = () => {
-    historyArr.push(password)
-    if (!historyArr) {
-        document.getElementById("noneText").style.display = "none"
-    }else{
-        localStorage.setItem('contraseñas', historyArr)
-        historyArr.forEach(pass => {
-            historyArr.find == pass;
-            console.log(historyArr)
-            const listItem = document.createElement("li")
-            listItem.setAttribute("class", "list-group-item")
-            listItem.innerText = pass
-            listGroup.appendChild(listItem)
-        })
-    }
-}
-
-copyButton.addEventListener("click", () => {
-    if (!password) {
-        return;
-    }else{
-        navigator.clipboard.writeText(password);
-        copyBtn.innerText = "Copied!",
-        copyBtn.className = "btn btn-outline-light btn-lg mt-2"
-    }
+generateBtn.addEventListener("click", () => {
+    const length =+ lengthEl.value
+    const hasLower = lowerEl.checked
+    const hasUpper = upperEl.checked
+    const hasNumber = numsEl.checked
+    const hasSymbol = symbolsEl.checked
+    copyText.innerHTML = passwordGenerator(hasLower, hasNumber, hasUpper, hasSymbol, length)
 })
+
+
+const passwordGenerator = (lower, upper, nums, symbols, length) => {
+    let password = "";
+    const typesCount = lower + upper + nums + symbols;
+    const types = [{lower}, {upper}, {nums}, {symbols}].filter(item => Object.values(item)[0]);
+
+    if (typesCount === 0) {
+        return "";
+    }
+
+    for (let i = 0; i < length; i += typesCount) {
+        types.forEach(type => {
+            const func = Object.keys(type)[0];
+            password += functions[func]();
+        });
+    }
+
+    const newPass = password.slice(0, length);
+
+    return newPass;
+}
+
+
+// const historyCanva = () => {
+//     historyArr.push(password)
+//     if (!historyArr) {
+//         document.getElementById("noneText").style.display = "none"
+//     }else{
+//         localStorage.setItem('contraseñas', historyArr)
+//         historyArr.forEach(pass => {
+//             historyArr.find == pass;
+//             console.log(historyArr)
+//             const listItem = document.createElement("li")
+//             listItem.setAttribute("class", "list-group-item")
+//             listItem.innerText = pass
+//             listGroup.appendChild(listItem)
+//         })
+//     }
+// }
+
+// copyButton.addEventListener("click", () => {
+//     if (!password) {
+//         return;
+//     }else{
+//         navigator.clipboard.writeText(password);
+//         copyBtn.innerText = "Copied!",
+//         copyBtn.className = "btn btn-outline-light btn-lg mt-2"
+//     }
+// })
 
 
 // const generatePassword = () => {

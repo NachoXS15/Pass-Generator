@@ -14,9 +14,15 @@ body{
     flex-direction: column;
 }
 
+main:nth-child(1){
+    background-color: #0d6efd;
+}
+
+
 main{
     width: 500px;
 }
+
 
 h1{
     font-size: 2.5em;
