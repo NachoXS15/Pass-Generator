@@ -28,6 +28,7 @@ function getRandomUpper(){
 function getRandomNumber(){
     const numbers = "0123456789"
     return numbers[Math.floor(Math.random() * numbers.length)]
+   
 }
 
 function getRandomSymbol() {
@@ -41,7 +42,7 @@ generateBtn.addEventListener("click", () => {
     const hasUpper = upperEl.checked
     const hasNumber = numsEl.checked
     const hasSymbol = symbolsEl.checked
-    copyText.innerHTML = passwordGenerator(hasLower, hasNumber, hasUpper, hasSymbol, length)
+    copyText.innerHTML = passwordGenerator(hasLower, hasUpper, hasNumber, hasSymbol, length)
 })
 
 
