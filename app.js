@@ -7,6 +7,7 @@ const copyButton = document.getElementById("btnCopy")
 const copyText = document.getElementById("passGen")
 const generateBtn = document.getElementById("generateBtn")
 const copySvg = document.getElementById("copy")
+const clearBtn = document.getElementById("clear");
 const functions = {
     lower: getRandomLower,
     upper: getRandomUpper,
@@ -36,6 +37,7 @@ function getRandomSymbol() {
 }
 
 generateBtn.addEventListener("click", () => {
+    generateBtn.innerText = "Re-generate"
     const length =+ lengthEl.value
     const hasLower = lowerEl.checked
     const hasUpper = upperEl.checked
@@ -46,7 +48,6 @@ generateBtn.addEventListener("click", () => {
 
 
 const passwordGenerator = (lower, upper, nums, symbols, length) => {
-    generateBtn.innerText == "Regenerate"
     let password = "";
     const typesCount = lower + upper + nums + symbols;
     const types = [{lower}, {upper}, {nums}, {symbols}].filter(item => Object.values(item)[0]);
@@ -63,6 +64,11 @@ const passwordGenerator = (lower, upper, nums, symbols, length) => {
     const newPass = password.slice(0, length);
     return newPass;
 }
+
+clearBtn.addEventListener("click", () => {
+    copyText.innerHTML = "Password will apear here"
+})
+
 
 copyButton.addEventListener("click", () => {
     const newPass = copyText.innerHTML
