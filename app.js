@@ -6,8 +6,7 @@ const symbolsEl = document.getElementById("charCheck")
 const copyButton = document.getElementById("btnCopy")
 const copyText = document.getElementById("passGen")
 const generateBtn = document.getElementById("generateBtn")
-
-
+const copySvg = document.getElementById("copy")
 const functions = {
     lower: getRandomLower,
     upper: getRandomUpper,
@@ -28,7 +27,7 @@ function getRandomUpper(){
 function getRandomNumber(){
     const numbers = "0123456789"
     return numbers[Math.floor(Math.random() * numbers.length)]
-   
+    
 }
 
 function getRandomSymbol() {
@@ -47,34 +46,42 @@ generateBtn.addEventListener("click", () => {
 
 
 const passwordGenerator = (lower, upper, nums, symbols, length) => {
+    generateBtn.innerText == "Regenerate"
     let password = "";
     const typesCount = lower + upper + nums + symbols;
     const types = [{lower}, {upper}, {nums}, {symbols}].filter(item => Object.values(item)[0]);
-
+    
     if (typesCount === 0) {
         return "";
     }
-
     for (let i = 0; i < length; i += typesCount) {
         types.forEach(type => {
             const func = Object.keys(type)[0];
             password += functions[func]();
         });
     }
-
     const newPass = password.slice(0, length);
-
     return newPass;
 }
 
+copyButton.addEventListener("click", () => {
+    const newPass = copyText.innerHTML
+    if (!newPass || newPass == "Password will apear here") {
+        copySvg.setAttribute('fill', 'red');
+    }else{
+        navigator.clipboard.writeText(newPass);
+        console.log(newPass);
+        copySvg.setAttribute('fill', 'green');
+    } 
+})
 
 // const historyCanva = () => {
-//     historyArr.push(password)
-//     if (!historyArr) {
-//         document.getElementById("noneText").style.display = "none"
-//     }else{
-//         localStorage.setItem('contraseñas', historyArr)
-//         historyArr.forEach(pass => {
+    //     historyArr.push(password)
+    //     if (!historyArr) {
+        //         document.getElementById("noneText").style.display = "none"
+        //     }else{
+            //         localStorage.setItem('contraseñas', historyArr)
+            //         historyArr.forEach(pass => {
 //             historyArr.find == pass;
 //             console.log(historyArr)
 //             const listItem = document.createElement("li")
@@ -84,29 +91,3 @@ const passwordGenerator = (lower, upper, nums, symbols, length) => {
 //         })
 //     }
 // }
-
-// copyButton.addEventListener("click", () => {
-//     if (!password) {
-//         return;
-//     }else{
-//         navigator.clipboard.writeText(password);
-//         copyBtn.innerText = "Copied!",
-//         copyBtn.className = "btn btn-outline-light btn-lg mt-2"
-//     }
-// })
-
-
-// const generatePassword = () => {
-//     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcedfghijklmnopqrstuvwxyz123456789$#.-_"
-//     const length = 12;
-//     let password = "";
-//     for (let i = 0; i < length; i++) {
-//         let index = Math.floor(Math.random() * characters.length);
-//         password += characters.charAt(index);
-//     }
-//     document.getElementById("passGen").innerText = password;
-//     copyButton.style.display = "block"
-//     document.getElementById("generateBtn").innerText = "Generate Again"
-//     copyBtn.innerText = "Copy"
-// }
-
