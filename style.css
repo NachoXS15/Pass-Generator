@@ -1,33 +1,85 @@
-*{
+* {
     margin: 0;
-    padding: 0.1em;
+    padding: 0.04em;
     box-sizing: border-box;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
 }
 
-body{
-    background-color: #2f6a7a;
+@media screen and (max-width: 468px) {
+    main{
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #show{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+body {
+    background-color: #7957e6;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    overflow-y: hidden;
+    flex-direction: column;
+    margin-top: 4em;
+}
+
+main {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    background-color: #5a4ad4;
+    border-radius: 9px;
+    box-shadow:  -5px 5px 14px #333333,
+                 5px 5px 14px #333333;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.logo{
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-main:nth-child(1){
-    background-color: #0d6efd;
+    margin: 0;
+    padding: 0;
 }
 
 
-main{
-    width: 500px;
-}
 
-
-h1{
+h1 {
     font-size: 2.5em;
 }
 
-#passGen{
+#show {
+    width: 100%;
+    height: 100%;
+}
+
+.btnCopy {
+    background-color: #2b2844;
+    border-radius: 3px;
+    height: 100%;
+    border: none;
+    padding: 10px 4px;
+    margin: 3px;
+}
+
+#passGen {
+    width: 100%;
+    text-align: left;
     font-size: 1.5em;
+    background-color: #2b2844;
+    padding: 0.3em 0.5em;
+    height: 100%;
+    border-radius: 3px;
 }
