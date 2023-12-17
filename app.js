@@ -3,7 +3,7 @@ const lowerEl = document.getElementById("lowerCheck");
 const upperEl = document.getElementById("capsCheck");
 const numsEl = document.getElementById("numCheck");
 const symbolsEl = document.getElementById("charCheck")
-const copyButton = document.getElementById("btnCopy")
+const copyButton = document.getElementById("copyBtnOption")
 const copyText = document.getElementById("passGen")
 const generateBtn = document.getElementById("generateBtn")
 const copySvg = document.getElementById("copy")
@@ -38,7 +38,7 @@ function getRandomSymbol() {
 
 generateBtn.addEventListener("click", () => {
     generateBtn.innerText = "Re-generate"
-    const length =+ lengthEl.value
+    const length = lengthEl.value
     const hasLower = lowerEl.checked
     const hasUpper = upperEl.checked
     const hasNumber = numsEl.checked
@@ -53,25 +53,31 @@ const passwordGenerator = (lower, upper, nums, symbols, length) => {
     const types = [{lower}, {upper}, {nums}, {symbols}].filter(item => Object.values(item)[0]);
     
     if (typesCount === 0) {
-        return "";
+        copyText.style.color = "red"
+        copyText.style.cursor = "pointer"
+        return "Please check options";
+    }else{
+
+        for (let i = 0; i < length; i += typesCount) {
+            types.forEach(type => {
+                const func = Object.keys(type)[0];
+                password += functions[func]();
+            });
+        }
+        const newPass = password.slice(0, length);
+        copyText.style.color = "white"
+        return newPass;
     }
-    for (let i = 0; i < length; i += typesCount) {
-        types.forEach(type => {
-            const func = Object.keys(type)[0];
-            password += functions[func]();
-        });
-    }
-    const newPass = password.slice(0, length);
-    return newPass;
 }
 
 clearBtn.addEventListener("click", () => {
-    copyText.innerHTML = "Password will apear here"
+    copyText.innerText = "Password will apear here"
+    copyText.style.color = "lightgray"
 })
-
 
 copyButton.addEventListener("click", () => {
     const newPass = copyText.innerHTML
+    console.log(newPass)
     if (!newPass || newPass == "Password will apear here") {
         copySvg.setAttribute('fill', 'red');
     }else{
@@ -80,6 +86,7 @@ copyButton.addEventListener("click", () => {
         copySvg.setAttribute('fill', 'green');
     } 
 })
+
 
 // const historyCanva = () => {
     //     historyArr.push(password)
