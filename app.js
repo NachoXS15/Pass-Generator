@@ -73,6 +73,7 @@ const passwordGenerator = (lower, upper, nums, symbols, length) => {
 clearBtn.addEventListener("click", () => {
     copyText.innerText = "Password will apear here"
     copyText.style.color = "lightgray"
+    copySvg.setAttribute('fill', 'white');
 })
 
 copyButton.addEventListener("click", () => {

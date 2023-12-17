@@ -6,7 +6,7 @@
         sans-serif;
 }
 
-@media screen and (max-width: 468px) {
+@media screen and (max-width: 538px) {
     main{
         max-width: 100%;
         display: flex;
@@ -27,9 +27,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    overflow-y: hidden;
     flex-direction: column;
-    margin-top: 4em;
+    margin-top: 2.4em;
 }
 
 main {
@@ -47,6 +46,7 @@ a{
     color: white;
 }
 
+
 .logo{
     display: flex;
     justify-content: center;
@@ -54,6 +54,14 @@ a{
     padding: 0;
 }
 
+#toggleHistory{
+    background: none;
+    border: none;
+    color: white;
+    margin-left: 2em;
+    margin-bottom: 1em;
+    align-self:flex-start;
+}
 
 
 h1 {
