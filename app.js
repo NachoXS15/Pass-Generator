@@ -3,11 +3,17 @@ const lowerEl = document.getElementById("lowerCheck");
 const upperEl = document.getElementById("capsCheck");
 const numsEl = document.getElementById("numCheck");
 const symbolsEl = document.getElementById("charCheck")
-const copyButton = document.getElementById("btnCopy")
+const copyButton = document.getElementById("copyBtnOption")
 const copyText = document.getElementById("passGen")
 const generateBtn = document.getElementById("generateBtn")
 const copySvg = document.getElementById("copy")
 const clearBtn = document.getElementById("clear");
+const listGroup = document.getElementById("list")
+const noneText = document.getElementById("noneText")
+
+let history = [];
+let passHistory = [];
+
 const functions = {
     lower: getRandomLower,
     upper: getRandomUpper,
@@ -38,12 +44,26 @@ function getRandomSymbol() {
 
 generateBtn.addEventListener("click", () => {
     generateBtn.innerText = "Re-generate"
-    const length =+ lengthEl.value
+    const length = lengthEl.value
     const hasLower = lowerEl.checked
     const hasUpper = upperEl.checked
     const hasNumber = numsEl.checked
     const hasSymbol = symbolsEl.checked
     copyText.innerHTML = passwordGenerator(hasLower, hasUpper, hasNumber, hasSymbol, length)
+})
+
+window.addEventListener('DOMContentLoaded', () => {
+    const passHistory = localStorage.getItem('passwords')
+    const historyJSON = JSON.parse(passHistory);
+    if (passHistory) {
+        historyJSON.forEach(pass => {
+            const listItem = document.createElement("li")
+            listItem.setAttribute("class", "list-group-item")
+            listItem.innerText = pass
+            listGroup.appendChild(listItem)
+
+        })
+    }
 })
 
 
@@ -53,25 +73,39 @@ const passwordGenerator = (lower, upper, nums, symbols, length) => {
     const types = [{lower}, {upper}, {nums}, {symbols}].filter(item => Object.values(item)[0]);
     
     if (typesCount === 0) {
-        return "";
+        copyText.style.color = "red"
+        copyText.style.cursor = "pointer"
+        return "Please check options";
+    }else{
+        for (let i = 0; i < length; i += typesCount) {
+            types.forEach(type => {
+                const func = Object.keys(type)[0];
+                password += functions[func]();
+            });
+        }
+        const newPass = password.slice(0, length);
+        if (!history.includes(newPass)) {
+            history.push(newPass);
+            localStorage.setItem('passwords', JSON.stringify(history))
+            const listItem = document.createElement("li")
+            listItem.setAttribute("class", "list-group-item")
+            listItem.innerText = newPass
+            listGroup.appendChild(listItem)
+        }
+        copyText.style.color = "white"
+        return newPass;
     }
-    for (let i = 0; i < length; i += typesCount) {
-        types.forEach(type => {
-            const func = Object.keys(type)[0];
-            password += functions[func]();
-        });
-    }
-    const newPass = password.slice(0, length);
-    return newPass;
 }
 
 clearBtn.addEventListener("click", () => {
-    copyText.innerHTML = "Password will apear here"
+    copyText.innerText = "Password will apear here"
+    copyText.style.color = "lightgray"
+    copySvg.setAttribute('fill', 'white');
 })
-
 
 copyButton.addEventListener("click", () => {
     const newPass = copyText.innerHTML
+    console.log(newPass)
     if (!newPass || newPass == "Password will apear here") {
         copySvg.setAttribute('fill', 'red');
     }else{
@@ -80,20 +114,3 @@ copyButton.addEventListener("click", () => {
         copySvg.setAttribute('fill', 'green');
     } 
 })
-
-// const historyCanva = () => {
-    //     historyArr.push(password)
-    //     if (!historyArr) {
-        //         document.getElementById("noneText").style.display = "none"
-        //     }else{
-            //         localStorage.setItem('contraseñas', historyArr)
-            //         historyArr.forEach(pass => {
-//             historyArr.find == pass;
-//             console.log(historyArr)
-//             const listItem = document.createElement("li")
-//             listItem.setAttribute("class", "list-group-item")
-//             listItem.innerText = pass
-//             listGroup.appendChild(listItem)
-//         })
-//     }
-// }

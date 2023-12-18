@@ -13,15 +13,17 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <!-- <button
-            class="btn btn-outline-info text-light"
+        <button
+            id="toggleHistory"
             id="toggle-canvas"
             data-bs-toggle="offcanvas"
             href="#offcanvasExample"
             role="button"
             aria-controls="offcanvasExample"
         >
-            Historial
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+          </svg>
         </button>
         <div
             class="offcanvas offcanvas-end"
@@ -42,11 +44,11 @@
             </div>
             <div class="offcanvas-body">
                 <div>
-                    <p>Your generated passwords will be saved here:</p>
+                    <p id="noneText">Your generated passwords will be saved here:</p>
                 </div>
                 <ul class="list-group" id="list"></ul>
             </div>
-        </div> -->
+        </div>
         <main class="d-flex flex-column text-light p-4 mb-4 mt-3">
             <h1 class="text-center text-white mb-4">Password Generator!</h1>
             <section>
@@ -88,9 +90,9 @@
                 </button>
             </section>
             <section class="text-center w-100 d-flex align-items-center" id="show">
-                <span id="passGen" style="margin-right: 0.2em;">Password will apear here</span>
+                <span id="passGen" style="margin-right: 0.2em; color: rgb(149, 148, 148);">Password will apear here</span>
                 <div class="d-flex">
-                    <button class="btnCopy">
+                    <button class="btnCopy" id="copyBtnOption">
                         <svg id="copy" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-clipboard-check" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                             <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/>
