@@ -8,6 +8,11 @@ const copyText = document.getElementById("passGen")
 const generateBtn = document.getElementById("generateBtn")
 const copySvg = document.getElementById("copy")
 const clearBtn = document.getElementById("clear");
+const listGroup = document.getElementById("list")
+const noneText = document.getElementById("noneText")
+
+let history = [];
+
 const functions = {
     lower: getRandomLower,
     upper: getRandomUpper,
@@ -57,7 +62,6 @@ const passwordGenerator = (lower, upper, nums, symbols, length) => {
         copyText.style.cursor = "pointer"
         return "Please check options";
     }else{
-
         for (let i = 0; i < length; i += typesCount) {
             types.forEach(type => {
                 const func = Object.keys(type)[0];
@@ -65,6 +69,13 @@ const passwordGenerator = (lower, upper, nums, symbols, length) => {
             });
         }
         const newPass = password.slice(0, length);
+        if (!history.includes(newPass)) {
+            history.push(newPass);
+            const listItem = document.createElement("li")
+            listItem.setAttribute("class", "list-group-item")
+            listItem.innerText = newPass
+            listGroup.appendChild(listItem)
+        }
         copyText.style.color = "white"
         return newPass;
     }
