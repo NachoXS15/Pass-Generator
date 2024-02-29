@@ -11,8 +11,6 @@ const clearBtn = document.getElementById("clear");
 const listGroup = document.getElementById("list")
 const noneText = document.getElementById("noneText")
 
-let history = [];
-let passHistory = [];
 
 const functions = {
     lower: getRandomLower,
@@ -52,20 +50,6 @@ generateBtn.addEventListener("click", () => {
     copyText.innerHTML = passwordGenerator(hasLower, hasUpper, hasNumber, hasSymbol, length)
 })
 
-window.addEventListener('DOMContentLoaded', () => {
-    const passHistory = localStorage.getItem('passwords')
-    const historyJSON = JSON.parse(passHistory);
-    if (passHistory) {
-        historyJSON.forEach(pass => {
-            const listItem = document.createElement("li")
-            listItem.setAttribute("class", "list-group-item")
-            listItem.innerText = pass
-            listGroup.appendChild(listItem)
-
-        })
-    }
-})
-
 
 const passwordGenerator = (lower, upper, nums, symbols, length) => {
     let password = "";
@@ -84,14 +68,6 @@ const passwordGenerator = (lower, upper, nums, symbols, length) => {
             });
         }
         const newPass = password.slice(0, length);
-        if (!history.includes(newPass)) {
-            history.push(newPass);
-            localStorage.setItem('passwords', JSON.stringify(history))
-            const listItem = document.createElement("li")
-            listItem.setAttribute("class", "list-group-item")
-            listItem.innerText = newPass
-            listGroup.appendChild(listItem)
-        }
         copyText.style.color = "white"
         return newPass;
     }

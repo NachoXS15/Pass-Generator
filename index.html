@@ -13,43 +13,7 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <button
-            id="toggleHistory"
-            id="toggle-canvas"
-            data-bs-toggle="offcanvas"
-            href="#offcanvasExample"
-            role="button"
-            aria-controls="offcanvasExample"
-        >
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
-          </svg>
-        </button>
-        <div
-            class="offcanvas offcanvas-end"
-            tabindex="-1"
-            id="offcanvasExample"
-            aria-labelledby="offcanvasExampleLabel"
-        >
-            <div class="offcanvas-header">
-                <h3 class="offcanvas-title" id="offcanvasExampleLabel">
-                    Historial
-                </h3>
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="Close"
-                ></button>
-            </div>
-            <div class="offcanvas-body">
-                <div>
-                    <p id="noneText">Your generated passwords will be saved here:</p>
-                </div>
-                <ul class="list-group" id="list"></ul>
-            </div>
-        </div>
-        <main class="d-flex flex-column text-light p-4 mb-4 mt-3">
+        <main class="d-flex flex-column text-light p-4 mb-4">
             <h1 class="text-center text-white mb-4">Password Generator!</h1>
             <section>
                 <div>

@@ -6,19 +6,7 @@
         sans-serif;
 }
 
-@media screen and (max-width: 538px) {
-    main{
-        max-width: 100%;
-        display: flex;
-        justify-content: center;
-    }
 
-    #show{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-}
 
 body {
     background-color: #7957e6;
@@ -33,6 +21,7 @@ body {
 
 main {
     width: 55%;
+    margin-top: 50PX;
     display: flex;
     flex-direction: column;
     background-color: #5a4ad4;
@@ -91,4 +80,64 @@ h1 {
     height: 100%;
     border-radius: 3px;
     cursor: not-allowed;
+}
+
+
+@media screen and (max-width: 538px) {
+    main{
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    #show{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    main{
+        width: 80%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #show{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 538px) {
+    main{
+        width: 80%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #show{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main{
+        width: 80%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    main{
+        width: 80%;
+        display: flex;
+        justify-content: center;
+    }
 }
