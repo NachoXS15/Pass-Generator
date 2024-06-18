@@ -77,6 +77,7 @@ clearBtn.addEventListener("click", () => {
     copyText.innerText = "Password will apear here"
     copyText.style.color = "lightgray"
     copySvg.setAttribute('fill', 'white');
+    generateBtn.innerText = "Generate"
 })
 
 copyButton.addEventListener("click", () => {
