@@ -10,8 +10,25 @@ const copySvg = document.getElementById("copy")
 const clearBtn = document.getElementById("clear");
 const listGroup = document.getElementById("list")
 const noneText = document.getElementById("noneText")
+const switchTheme = document.getElementById("toggle-theme")
+const body = document.body;
 
 
+//click para activar modo oscuro
+switchTheme.addEventListener("click", function(){
+    console.log('modo oscuro');
+    body.classList.toggle("dark-mode")
+    if (body.classList.contains("dark-mode")) {
+        generateBtn.classList.remove("btn-success")
+        generateBtn.classList.toggle("btn-light")
+    }else{
+        generateBtn.classList.add("btn-success")
+        generateBtn.classList.remove("btn-light")
+    }
+
+})
+
+//definicion de funciones
 const functions = {
     lower: getRandomLower,
     upper: getRandomUpper,
@@ -40,6 +57,7 @@ function getRandomSymbol() {
     return symbols[Math.floor(Math.random() * symbols.length)]
 }
 
+//revisa cuales estan marcados y muestra el valor final
 generateBtn.addEventListener("click", () => {
     generateBtn.innerText = "Re-generate"
     const length = lengthEl.value
@@ -73,6 +91,7 @@ const passwordGenerator = (lower, upper, nums, symbols, length) => {
     }
 }
 
+//limpia el campo de contraseña
 clearBtn.addEventListener("click", () => {
     copyText.innerText = "Password will apear here"
     copyText.style.color = "lightgray"
@@ -80,6 +99,8 @@ clearBtn.addEventListener("click", () => {
     generateBtn.innerText = "Generate"
 })
 
+
+//copia el campo de contraseña
 copyButton.addEventListener("click", () => {
     const newPass = copyText.innerHTML
     console.log(newPass)
@@ -91,3 +112,6 @@ copyButton.addEventListener("click", () => {
         copySvg.setAttribute('fill', 'green');
     } 
 })
+
+
+
